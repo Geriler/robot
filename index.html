@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Умный дом</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="shower/themes/ribbon/styles/styles.css">
+    <style>
+        .shower {
+            --slide-ratio: calc(16 / 9);
+        }
+    </style>
+</head>
+<body class="shower list">
+
+    <header class="caption">
+        <h1>Умный дом</h1>
+        <p>Колтыгин Александр, ПИ-43</p>
+    </header>
+
+    <section class="slide" id="cover">
+        <h2>Умный дом</h2>
+        <figure>
+            <img class="cover" src="pictures/cover.png">
+            <figcaption class="copyright right white">
+                <a href="https://github.com/Geriler">© Alexander Koltygin</a>
+            </figcaption>
+        </figure>
+        <style>
+            #cover h2 {
+                margin: 30px 0 0;
+                color: black;
+                text-align: center;
+                font-size: 70px;
+            }
+
+            #cover p {
+                margin: 10px 0 0;
+                text-align: center;
+                color: white;
+                font-style: italic;
+                font-size: 20px;
+            }
+
+            #cover p a {
+                color: white;
+            }
+        </style>
+    </section>
+
+    <section class="slide">
+        <h2>История развития «умного дома»</h2>
+        <p>«Умный дом» это система домашних устройств, способных выполнять действия и решать определенные повседневные задачи без участия человека.</p>
+    </section>
+
+    <section class="slide">
+        <h2>История развития «умного дома»</h2>
+        <ul>
+            <li>1961 год - создание диммера</li>
+            <li>Lutron Electronics Company Inc работает над «умными» технологиями и внедряет их в обиход</li>
+            <li>1975 год - бытовую автоматику начали использовать для управления музыкальным проигрывателем</li>
+            <li>Появление транзисторов, цифровых контроллеров, микросхем, которые можно программировать</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2>История развития «умного дома»</h2>
+        <p>Жилой дом на южном берегу Англии. В основу автоматики легло использование широкополосной KNX-системы, отвечающей за управление освещением, сигнализацией, жалюзи, отоплением и дверями гаража. Был создан бассейн, который дополнили LED-системой с оригинальными цветовыми эффектами.</p>
+        <p class="note">KNX - коммуникационная шина, используемая для автоматизации зданий</p>
+    </section>
+
+    <section class="slide">
+        <h2>История развития «умного дома»</h2>
+        <p>Появление беспроводной связи Wi-Fi</p>
+        <p>Сегодня благодаря интернету «умный дом» может осуществлять управление всеми инженерными системами и приборами с помощью смартфона или специальной панели управления.</p>
+    </section>
+
+    <section class="slide" id="details">
+        <h2>Проект «умный дом»</h2>
+        <ul>
+            <li>Arduino UNO</li>
+            <li>Термистор</li>
+            <li>1 резистор на 10 кОм</li>
+            <li>2 светодиода</li>
+            <li>2 резистора на 220 Ом</li>
+            <li>LCD дисплей MT-16S2H</li>
+            <li>Сдвиговый регистр 74HC595</li>
+        </ul>
+        <figure>
+            <img class="cover" src="pictures/details.jpg">
+        </figure>
+        <style>
+            #details img {
+                transform: translateX(100px);
+                transform: translateY(-50%);
+            }
+        </style>
+    </section>
+    
+    <section class="slide" id="schema">
+        <h2>Проект «умный дом»</h2>
+        <p class="note">Схема подключения</p>
+        <figure>
+            <img class="cover" src="pictures/schema.jpg">
+        </figure>
+        <style>
+            #schema img {
+                transform: translateX(100px);
+                transform: translateY(-50%);
+            }
+        </style>
+    </section>
+    
+    <section class="slide" id="pic">
+        <h2>Проект «умный дом»</h2>
+        <p class="note">Собранная схема</p>
+        <figure>
+            <img class="cover" src="pictures/pic1.jpg">
+        </figure>
+        <style>
+            #pic img {
+                transform: translateX(100px);
+                transform: translateY(-50%);
+            }
+        </style>
+    </section>
+
+    <section class="slide">
+        <h2>Проект «умный дом»</h2>
+        <pre>
+            <code>#include &lt;SPI.h&gt;</code>
+            <code>#include &lt;LiquidCrystal.h&gt;</code>
+            <code> </code>
+            <code>#define LED1 7</code>
+            <code>#define LED2 8</code>
+        </pre>
+    </section>
+
+    <section class="slide">
+        <h2>Проект «умный дом»</h2>
+        <pre>
+            <code>LiquidCrystal lcd(10);</code>
+            <code>bool isOnLed1 = false;</code>
+            <code>bool isOnLed2 = false;</code>
+            <code>void setup() {</code>
+            <code>    lcd.begin(16, 2);</code>
+            <code>    pinMode(LED1, OUTPUT);</code>
+            <code>    pinMode(LED2, OUTPUT);</code>
+            <code>}</code>
+        </pre>
+    </section>
+
+    <section class="slide">
+        <h2>Проект «умный дом»</h2>
+        <pre>
+            <code>void loop() {</code>
+            <code>float voltage = analogRead(A0) * 5.0 / 1023.0;</code>
+            <code>float temperature = 1.0 / (log(voltage / 2.5) / 4300.0</code><code> + 1.0 / 298.0) - 273.0;</code>
+            <code>lcd.setCursor(0, 0);</code>
+            <code>lcd.print("t\x99 = ");</code>
+            <code>lcd.print(temperature);</code>
+            <code>lcd.print(" \x99""C    ");</code>
+        </pre>
+    </section>
+    
+    <section class="slide">
+        <h2>Проект «умный дом»</h2>
+        <pre>
+            <code>lcd.setCursor(0, 1);</code>
+            <code>if (temperature &gt;= 22 && temperature &lt;= 26) {</code>
+            <code>    digitalWrite(LED1, HIGH);</code>
+            <code>    digitalWrite(LED2, LOW);</code>
+            <code>    isOnLed1 = true;</code>
+            <code>    isOnLed2 = false;</code>
+        </pre>
+    </section>
+
+    <section class="slide">
+        <h2>Проект «умный дом»</h2>
+        <pre>
+            <code>} else {</code>
+            <code>    digitalWrite(LED2, HIGH);</code>
+            <code>    digitalWrite(LED1, LOW);</code>
+            <code>    isOnLed2 = true;</code>
+            <code>    isOnLed1 = false;</code>
+            <code>}</code>
+        </pre>
+    </section>
+    
+    <section class="slide">
+        <h2>Проект «умный дом»</h2>
+        <pre>
+            <code>lcd.print("led 1 ");</code>
+            <code>if (isOnLed1) { lcd.print("\xef");</code>
+            <code>} else { lcd.print("\xee"); }</code>
+            <code>lcd.print("  led 2 ");</code>
+            <code>if (isOnLed2) { lcd.print("\xef");</code>
+            <code>} else { lcd.print("\xee"); }</code>
+            <code>delay(500);</code>
+        </pre>
+    </section>
+
+    <section class="slide">
+        <h2>Модификация проекта</h2>
+        <ul>
+            <li>Светодиоды заменить на реле</li>
+            <li>Arduino UNO заменить на Arduino Mega или Arduino Nano</li>
+            <li>Добавить ещё несколько таких Arduino и подключить к Raspberry Pi</li>
+            <li>Термистор заменить на более лю=учший датчик температуры и влажности</li>
+            <li>Подключить датчики газа и воды</li>
+        </ul>
+    </section>
+
+    <footer class="badge">
+        <a href="https://github.com/Geriler/robot">Fork me on GitHub</a>
+    </footer>
+
+    <div class="progress"></div>
+
+    <script src="shower/shower.min.js"></script>
+</body>
+</html>
